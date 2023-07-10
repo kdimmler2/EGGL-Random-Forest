@@ -1,0 +1,22 @@
+{
+'split_vcf' :
+{
+'output' : '.logs/{rule}/{wildcards.chrom}/%j.{rule}.out',
+'error'  : '.logs/{rule}/{wildcards.chrom}/%j.{rule}.err'
+},
+'gatk_table' :
+{
+'output' : '.logs/{rule}/{wildcards.chrom}/%j.{rule}.out',
+'error'  : '.logs/{rule}/{wildcards.chrom}/%j.{rule}.err'
+},
+'ranfog_input' :
+{
+'output' : '.logs/{rule}/{wildcards.chrom}/%j.{rule}.out',
+'error'  : '.logs/{rule}/{wildcards.chrom}/%j.{rule}.err'
+},
+'combined_files' :
+{
+'output' : '.logs/{rule}/%j.{rule}.out',
+'error'  : '.logs/{rule}/%j.{rule}.err'
+},
+}

@@ -1,0 +1,3 @@
+training_vcf: /panfs/jay/groups/27/mccuem/dimml002/NuGEN/RandomForest/Training.vcf.gz
+number_autosomes: 32
+pheno_file: /panfs/jay/groups/27/mccuem/dimml002/NuGEN/RandomForest/Training.pheno

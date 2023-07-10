@@ -1,0 +1,29 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Provided resources: mem_mb=24000, mem_mib=22889, disk_mb=1000, disk_mib=954, time=120, cpus=4
+Select jobs to execute...
+
+[Mon Jul 10 11:09:43 2023]
+rule ranfog_input:
+    input: input_files/training/generation/chr1/chr1.table
+    output: input_files/training/generation/chr1/chr1_RanFogInput.txt
+    jobid: 0
+    reason: Missing output files: input_files/training/generation/chr1/chr1_RanFogInput.txt
+    wildcards: chrom=chr1
+    resources: mem_mb=24000, mem_mib=22889, disk_mb=1000, disk_mib=954, tmpdir=/tmp, time=120, cpus=4
+
+[Mon Jul 10 11:10:07 2023]
+Error in rule ranfog_input:
+    jobid: 0
+    input: input_files/training/generation/chr1/chr1.table
+    output: input_files/training/generation/chr1/chr1_RanFogInput.txt
+
+RuleException:
+AttributeError in file /panfs/jay/groups/27/mccuem/dimml002/NuGEN/EGGL-Random-Forest/Training_RF.smk, line 99:
+'OutputFiles' object has no attribute 'final'
+  File "/panfs/jay/groups/27/mccuem/dimml002/NuGEN/EGGL-Random-Forest/Training_RF.smk", line 99, in __rule_ranfog_input
+  File "/home/mccuem/dimml002/mambaforge/envs/nugen/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
