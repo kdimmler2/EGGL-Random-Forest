@@ -7,8 +7,16 @@ rule all:
     input:
         'input_files/GWAS/GWAS.table',
         'input_files/GWAS/GWAS_RanFoG_Input.txt',
-        expand('input_files/GWAS/subsets/training_sub{num}.txt', num = [str(i) for i in range(1,11)]), 
-        expand('input_files/GWAS/subsets/testing_sub{num}.txt', num = [str(i) for i in range(1,11)]),
+        expand('input_files/GWAS/subsets/testing_sub{num}.txt', num = [str(i) for i in range(1,11)]), 
+        expand('input_files/GWAS/subsets/training_sub{num}.txt', num = [str(i) for i in range(1,11)]),
+        expand('input_files/GWAS/parameters/params_sub{num}.txt', num = [str(i) for i in range(1,11)]),
+#        expand('results/subset{num}/TimesSelected.txt', num = [str(i) for i in range(1,11)]),
+#        expand('results/subset{num}/Variable_Importance.txt', num = [str(i) for i in range(1,11)]),
+#        expand('results/subset{num}/Trees.txt', num = [str(i) for i in range(1,11)]),
+#        expand('results/subset{num}/EGBV.txt', num = [str(i) for i in range(1,11)]),
+#        expand('results/subset{num}/Trees.test', num = [str(i) for i in range(1,11)]),
+#        expand('results/subset{num}/Predictions.txt', num = [str(i) for i in range(1,11)]),
+
 
 rule gatk_table:
     input:
@@ -85,11 +93,80 @@ rule generate_subsets:
         testing_subs = expand('input_files/GWAS/subsets/testing_sub{num}.txt', num = [str(i) for i in range(1,11)]),
         training_subs = expand('input_files/GWAS/subsets/training_sub{num}.txt', num = [str(i) for i in range(1,11)]),
     resources:
-        time    = 120,
-        mem_mb  = 24000,
+        time    = 20,
+        mem_mb  = 12000,
         cpus    = 4,
     script:
         'generate_subsets.py'
+
+
+rule generate_params:
+    input:
+        all_data = 'params.txt',
+    output:
+        testing_subs = expand('input_files/GWAS/parameters/params_sub{num}.txt', num = [str(i) for i in range(1,11)]),
+    resources:
+        time    = 20,
+        mem_mb  = 12000,
+        cpus    = 4,
+    script:
+        'generate_params.py'
+
+rule random_forest:
+    input:
+        test_subset = 'input_files/GWAS/subsets/testing_sub{num}.txt',
+        train_subset = 'input_files/GWAS/subsets/training_sub{num}.txt',
+    output:
+        times_selected = 'results/subset{num}/TimesSelected.txt',
+        variable_importance = 'results/subset{num}/Variable_Importance.txt',
+        trees_train = 'results/subset{num}/Trees.txt',
+        egbv = 'results/subset{num}/EGBV.txt',
+        trees_test = 'results/subset{num}/Trees.test',
+        predictions = 'results/subset{num}/Predictions.txt',
+    resources:
+        time    = 120,
+        mem_mb  = 60000,
+        cpus    = 4,
+    shell:
+        '''
+            java -jar RanFoG.jar
+        '''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

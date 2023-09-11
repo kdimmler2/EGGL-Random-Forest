@@ -1,2 +1,2 @@
-training_vcf: /panfs/jay/groups/27/mccuem/dimml002/NuGEN/RandomForest/Training.vcf.gz
-pheno_file: /panfs/jay/groups/27/mccuem/dimml002/NuGEN/RandomForest/Training.pheno
+GWAS_vcf: /panfs/jay/groups/27/mccuem/dimml002/NuGEN/Variant_Calling/VCFs/Mar_2023/GWAS_cohort.vcf.gz 
+GWAS_pheno_file: /panfs/jay/groups/27/mccuem/dimml002/NuGEN/Sample_Organization/Fall_2023/GWAS_phenos.txt

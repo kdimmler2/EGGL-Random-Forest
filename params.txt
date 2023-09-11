@@ -1,14 +1,14 @@
 #Input files
-training=data/training_regression.data
-testing=data/testing_regression.data
+training=input_files/GWAS/subsets/training_sub1.txt
+testing=input_files/GWAS/subsets/testing_sub1.txt
 
 #Forest parameters 
 ForestSize=500
 mtry=100
-N_features=500
+N_features=17807
 max_branch=2000
 
-LossFunction=2
+LossFunction=4
 #Personalized cost function
 false_positive_cost=1
 false_negative_cost=1  

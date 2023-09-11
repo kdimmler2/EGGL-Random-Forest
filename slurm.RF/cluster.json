@@ -9,4 +9,19 @@
 'output' : '.logs/{rule}/%j.{rule}.out',
 'error'  : '.logs/{rule}/%j.{rule}.err'
 },
+'generate_subsets' :
+{
+'output' : '.logs/{rule}/%j.{rule}.out',
+'error'  : '.logs/{rule}/%j.{rule}.err'
+},
+'generate_params' :
+{
+'output' : '.logs/{rule}/%j.{rule}.out',
+'error'  : '.logs/{rule}/%j.{rule}.err'
+},
+'random_forest' :
+{
+'output' : '.logs/{rule}/subset{wildcards.num}/%j.{rule}.out',
+'error'  : '.logs/{rule}/subset{wildcards.num}/%j.{rule}.err'
+},
 }
