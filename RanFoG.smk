@@ -11,12 +11,12 @@ rule all:
         expand('input_files/GWAS/subsets/subset{num}/data/testing.txt', num = [str(i) for i in range(1,11)]), 
         expand('input_files/GWAS/subsets/subset{num}/data/training.txt', num = [str(i) for i in range(1,11)]),
         expand('input_files/GWAS/subsets/subset{num}/params.txt', num = [str(i) for i in range(1,11)]),
-        expand('input_files/GWAS/subsets/subset{num}/results/TimesSelected.txt', num = [str(i) for i in range(1,11)]),
-        expand('input_files/GWAS/subsets/subset{num}/results/Variable_Importance.txt', num = [str(i) for i in range(1,11)]),
-        expand('input_files/GWAS/subsets/subset{num}/results/Trees.txt', num = [str(i) for i in range(1,11)]),
-        expand('input_files/GWAS/subsets/subset{num}/results/EGBV.txt', num = [str(i) for i in range(1,11)]),
-        expand('input_files/GWAS/subsets/subset{num}/results/Trees.test', num = [str(i) for i in range(1,11)]),
-        expand('input_files/GWAS/subsets/subset{num}/results/Predictions.txt', num = [str(i) for i in range(1,11)]),
+        expand('input_files/GWAS/subsets/subset{num}/TimesSelected.txt', num = [str(i) for i in range(1,11)]),
+        expand('input_files/GWAS/subsets/subset{num}/Variable_Importance.txt', num = [str(i) for i in range(1,11)]),
+        expand('input_files/GWAS/subsets/subset{num}/Trees.txt', num = [str(i) for i in range(1,11)]),
+        expand('input_files/GWAS/subsets/subset{num}/EGBV.txt', num = [str(i) for i in range(1,11)]),
+        expand('input_files/GWAS/subsets/subset{num}/Trees.test', num = [str(i) for i in range(1,11)]),
+        expand('input_files/GWAS/subsets/subset{num}/Predictions.txt', num = [str(i) for i in range(1,11)]),
 
 
 rule gatk_table:
@@ -117,12 +117,12 @@ rule random_forest:
     input:
         params_file = 'input_files/GWAS/subsets/subset{num}/params.txt',
     output:
-        times_selected = 'input_files/GWAS/subsets/subset{num}/results/TimesSelected.txt',
-        variable_importance = 'input_files/GWAS/subsets/subset{num}/results/Variable_Importance.txt',
-        trees_train = 'input_files/GWAS/subsets/subset{num}/results/Trees.txt',
-        egbv = 'input_files/GWAS/subsets/subset{num}/results/EGBV.txt',
-        trees_test = 'input_files/GWAS/subsets/subset{num}/results/Trees.test',
-        predictions = 'input_files/GWAS/subsets/subset{num}/results/Predictions.txt',
+        times_selected = 'input_files/GWAS/subsets/subset{num}/TimesSelected.txt',
+        variable_importance = 'input_files/GWAS/subsets/subset{num}/Variable_Importance.txt',
+        trees_train = 'input_files/GWAS/subsets/subset{num}/Trees.txt',
+        egbv = 'input_files/GWAS/subsets/subset{num}/EGBV.txt',
+        trees_test = 'input_files/GWAS/subsets/subset{num}/Trees.test',
+        predictions = 'input_files/GWAS/subsets/subset{num}/Predictions.txt',
     resources:
         time    = 120,
         mem_mb  = 60000,
