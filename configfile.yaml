@@ -1,2 +1,2 @@
-GWAS_vcf: /panfs/jay/groups/27/mccuem/dimml002/NuGEN/Variant_Calling/VCFs/Mar_2023/GWAS_cohort.vcf.gz 
-GWAS_pheno_file: /panfs/jay/groups/27/mccuem/dimml002/NuGEN/Sample_Organization/Fall_2023/GWAS_phenos.txt
+GWAS_vcf: /panfs/jay/groups/27/mccuem/dimml002/NuGEN/targets/10MissSamplesRemovedGWAS.vcf.gz 
+GWAS_pheno_file: /panfs/jay/groups/27/mccuem/dimml002/NuGEN/targets/10MissGWASPhenos.list 

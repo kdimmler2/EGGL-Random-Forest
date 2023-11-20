@@ -13,8 +13,17 @@ end_10 = tenth_of_lines
 start_90 = end_10
 end_90 = len(lines)
 
+if not os.path.exists('input_files/GWAS/subsets'):
+    os.mkdir('input_files/GWAS/subsets')
+
 for i in range(1,11):
-    if os.path.exists('input_files/GWAS/subsets/training_sub1.txt'):
+    if not os.path.exists('input_files/GWAS/subsets/subset' + str(i)):
+        os.mkdir('input_files/GWAS/subsets/subset' + str(i))
+    if not os.path.exists('input_files/GWAS/subsets/subset' + str(i) + '/data'):
+        os.mkdir('input_files/GWAS/subsets/subset' + str(i) + '/data')
+
+for i in range(1,11):
+    if os.path.exists('input_files/GWAS/subsets/subset1/data/training.txt'):
         start_10 = end_10
         end_10 = start_10 + tenth_of_lines
         start_90 = 0 
@@ -29,15 +38,15 @@ for i in range(1,11):
         print(start_90_2)
         print(str(end_90_2) + '\n')
 
-        with open('input_files/GWAS/subsets/training_sub' + str(i) + '.txt', 'wt') as f:
+        with open('input_files/GWAS/subsets/subset' + str(i) + '/data/training.txt', 'wt') as f:
             f.writelines(lines[start_90:end_90])
             f.writelines(lines[start_90_2:end_90_2])
-        with open('input_files/GWAS/subsets/testing_sub' + str(i) + '.txt', 'wt') as f:
+        with open('input_files/GWAS/subsets/subset' + str(i) + '/data/testing.txt', 'wt') as f:
             f.writelines(lines[start_10:end_10])
 
     else:
-        with open('input_files/GWAS/subsets/training_sub1.txt', 'wt') as f:
+        with open('input_files/GWAS/subsets/subset1/data/training.txt', 'wt') as f:
             f.writelines(lines[start_90:end_90])
-        with open('input_files/GWAS/subsets/testing_sub1.txt', 'wt') as f:
+        with open('input_files/GWAS/subsets/subset1/data/testing.txt', 'wt') as f:
             f.writelines(lines[start_10:end_10])
 

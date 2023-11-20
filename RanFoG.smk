@@ -1,5 +1,6 @@
 import pandas as pd
 import random
+import os
 
 include: 'src/utils.py'
 
@@ -7,15 +8,15 @@ rule all:
     input:
         'input_files/GWAS/GWAS.table',
         'input_files/GWAS/GWAS_RanFoG_Input.txt',
-        expand('input_files/GWAS/subsets/testing_sub{num}.txt', num = [str(i) for i in range(1,11)]), 
-        expand('input_files/GWAS/subsets/training_sub{num}.txt', num = [str(i) for i in range(1,11)]),
-        expand('input_files/GWAS/parameters/params_sub{num}.txt', num = [str(i) for i in range(1,11)]),
-#        expand('results/subset{num}/TimesSelected.txt', num = [str(i) for i in range(1,11)]),
-#        expand('results/subset{num}/Variable_Importance.txt', num = [str(i) for i in range(1,11)]),
-#        expand('results/subset{num}/Trees.txt', num = [str(i) for i in range(1,11)]),
-#        expand('results/subset{num}/EGBV.txt', num = [str(i) for i in range(1,11)]),
-#        expand('results/subset{num}/Trees.test', num = [str(i) for i in range(1,11)]),
-#        expand('results/subset{num}/Predictions.txt', num = [str(i) for i in range(1,11)]),
+        expand('input_files/GWAS/subsets/subset{num}/data/testing.txt', num = [str(i) for i in range(1,11)]), 
+        expand('input_files/GWAS/subsets/subset{num}/data/training.txt', num = [str(i) for i in range(1,11)]),
+        expand('input_files/GWAS/subsets/subset{num}/params.txt', num = [str(i) for i in range(1,11)]),
+        expand('input_files/GWAS/subsets/subset{num}/results/TimesSelected.txt', num = [str(i) for i in range(1,11)]),
+        expand('input_files/GWAS/subsets/subset{num}/results/Variable_Importance.txt', num = [str(i) for i in range(1,11)]),
+        expand('input_files/GWAS/subsets/subset{num}/results/Trees.txt', num = [str(i) for i in range(1,11)]),
+        expand('input_files/GWAS/subsets/subset{num}/results/EGBV.txt', num = [str(i) for i in range(1,11)]),
+        expand('input_files/GWAS/subsets/subset{num}/results/Trees.test', num = [str(i) for i in range(1,11)]),
+        expand('input_files/GWAS/subsets/subset{num}/results/Predictions.txt', num = [str(i) for i in range(1,11)]),
 
 
 rule gatk_table:
@@ -90,8 +91,8 @@ rule generate_subsets:
     input:
         all_data = 'input_files/GWAS/GWAS_RanFoG_Input.txt',
     output:
-        testing_subs = expand('input_files/GWAS/subsets/testing_sub{num}.txt', num = [str(i) for i in range(1,11)]),
-        training_subs = expand('input_files/GWAS/subsets/training_sub{num}.txt', num = [str(i) for i in range(1,11)]),
+        testing_subs = expand('input_files/GWAS/subsets/subset{num}/data/testing.txt', num = [str(i) for i in range(1,11)]),
+        training_subs = expand('input_files/GWAS/subsets/subset{num}/data/training.txt', num = [str(i) for i in range(1,11)]),
     resources:
         time    = 20,
         mem_mb  = 12000,
@@ -102,9 +103,9 @@ rule generate_subsets:
 
 rule generate_params:
     input:
-        all_data = 'params.txt',
+        all_data = rules.generate_subsets.output.testing_subs,
     output:
-        testing_subs = expand('input_files/GWAS/parameters/params_sub{num}.txt', num = [str(i) for i in range(1,11)]),
+        testing_subs = expand('input_files/GWAS/subsets/subset{num}/params.txt', num = [str(i) for i in range(1,11)]),
     resources:
         time    = 20,
         mem_mb  = 12000,
@@ -114,21 +115,24 @@ rule generate_params:
 
 rule random_forest:
     input:
-        test_subset = 'input_files/GWAS/subsets/testing_sub{num}.txt',
-        train_subset = 'input_files/GWAS/subsets/training_sub{num}.txt',
+        params_file = 'input_files/GWAS/subsets/subset{num}/params.txt',
     output:
-        times_selected = 'results/subset{num}/TimesSelected.txt',
-        variable_importance = 'results/subset{num}/Variable_Importance.txt',
-        trees_train = 'results/subset{num}/Trees.txt',
-        egbv = 'results/subset{num}/EGBV.txt',
-        trees_test = 'results/subset{num}/Trees.test',
-        predictions = 'results/subset{num}/Predictions.txt',
+        times_selected = 'input_files/GWAS/subsets/subset{num}/results/TimesSelected.txt',
+        variable_importance = 'input_files/GWAS/subsets/subset{num}/results/Variable_Importance.txt',
+        trees_train = 'input_files/GWAS/subsets/subset{num}/results/Trees.txt',
+        egbv = 'input_files/GWAS/subsets/subset{num}/results/EGBV.txt',
+        trees_test = 'input_files/GWAS/subsets/subset{num}/results/Trees.test',
+        predictions = 'input_files/GWAS/subsets/subset{num}/results/Predictions.txt',
     resources:
         time    = 120,
         mem_mb  = 60000,
         cpus    = 4,
     shell:
         '''
+            cp RanFoG.jar input_files/GWAS/subsets/subset{wildcards.num}
+            
+            cd input_files/GWAS/subsets/subset{wildcards.num}
+
             java -jar RanFoG.jar
         '''
 
