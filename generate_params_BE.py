@@ -1,6 +1,6 @@
 import math
 
-with open('results/iteration1/training/training.table', 'rt') as infile:
+with open('results/current_iteration/training/training.table', 'rt') as infile:
     features = len(infile.readlines())
 
 mtry_param = math.ceil(math.sqrt(features))
@@ -13,7 +13,7 @@ loss_function = 1
 
 # Writing to the file using f-strings
 for i in range(1,11):
-    with open('results/iteration1/training/subsets/subset' + str(i) + '/params.txt', 'wt') as file:
+    with open('results/current_iteration/training/subsets/subset' + str(i) + '/params.txt', 'wt') as file:
         file.write(f"#Input files\n"
                    f"training=data/training.txt\n"
                    f"testing=data/testing.txt\n\n"

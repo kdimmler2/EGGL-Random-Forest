@@ -1,2 +1,2 @@
-GWAS_vcf: /panfs/jay/groups/27/mccuem/dimml002/NuGEN/targets/10MissSamplesRemovedGWAS.vcf.gz 
-GWAS_pheno_file: /panfs/jay/groups/27/mccuem/dimml002/NuGEN/targets/10MissGWASPhenos.list 
+training_vcf: tuning6.vcf.gz 
+training_pheno_file: tuning6.phenos 

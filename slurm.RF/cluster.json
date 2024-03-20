@@ -24,4 +24,79 @@
 'output' : '.logs/{rule}/subset{wildcards.num}/%j.{rule}.out',
 'error'  : '.logs/{rule}/subset{wildcards.num}/%j.{rule}.err'
 },
+'auc_roc' :
+{
+'output' : '.logs/{rule}/subset{wildcards.num}/%j.{rule}.out',
+'error'  : '.logs/{rule}/subset{wildcards.num}/%j.{rule}.err'
+},
+'gather_aucs' :
+{
+'output' : '.logs/{rule}/%j.{rule}.out',
+'error'  : '.logs/{rule}/%j.{rule}.err'
+},
+'get_final_VI' :
+{
+'output' : '.logs/{rule}/%j.{rule}.out',
+'error'  : '.logs/{rule}/%j.{rule}.err'
+},
+'top_80_features' :
+{
+'output' : '.logs/{rule}/%j.{rule}.out',
+'error'  : '.logs/{rule}/%j.{rule}.err'
+},
+'top_80_variants' :
+{
+'output' : '.logs/{rule}/%j.{rule}.out',
+'error'  : '.logs/{rule}/%j.{rule}.err'
+},
+'gatk_table_BE' :
+{
+'output' : '.logs/{rule}/%j.{rule}.out',
+'error'  : '.logs/{rule}/%j.{rule}.err'
+},
+'ranfog_input_BE' :
+{
+'output' : '.logs/{rule}/%j.{rule}.out',
+'error'  : '.logs/{rule}/%j.{rule}.err'
+},
+'generate_subsets_BE' :
+{
+'output' : '.logs/{rule}/%j.{rule}.out',
+'error'  : '.logs/{rule}/%j.{rule}.err'
+},
+'generate_params_BE' :
+{
+'output' : '.logs/{rule}/%j.{rule}.out',
+'error'  : '.logs/{rule}/%j.{rule}.err'
+},
+'random_forest_BE' :
+{
+'output' : '.logs/{rule}/subset{wildcards.num}/%j.{rule}.out',
+'error'  : '.logs/{rule}/subset{wildcards.num}/%j.{rule}.err'
+},
+'auc_roc_BE' :
+{
+'output' : '.logs/{rule}/subset{wildcards.num}/%j.{rule}.out',
+'error'  : '.logs/{rule}/subset{wildcards.num}/%j.{rule}.err'
+},
+'gather_aucs_BE' :
+{
+'output' : '.logs/{rule}/%j.{rule}.out',
+'error'  : '.logs/{rule}/%j.{rule}.err'
+},
+'get_final_VI_BE' :
+{
+'output' : '.logs/{rule}/%j.{rule}.out',
+'error'  : '.logs/{rule}/%j.{rule}.err'
+},
+'top_80_features_BE' :
+{
+'output' : '.logs/{rule}/%j.{rule}.out',
+'error'  : '.logs/{rule}/%j.{rule}.err'
+},
+'top_80_variants_BE' :
+{
+'output' : '.logs/{rule}/%j.{rule}.out',
+'error'  : '.logs/{rule}/%j.{rule}.err'
+},
 }
